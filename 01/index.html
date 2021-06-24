@@ -9,6 +9,15 @@
     // Napisz skrypt, który zmienia losowo kolor strony co 1s.
 
     var colors = ['red', 'blue', 'green', 'yellow', 'purple', 'orange'];
+    const body = document.querySelector('body');
+    
+    const generateIndex = array => Math.floor(Math.random() * array.length);
+
+    setInterval(() => {
+        let index = generateIndex(colors);
+        body.style.background = colors[index];
+    },1000);
+
 </script>
 </body>
 </html>
