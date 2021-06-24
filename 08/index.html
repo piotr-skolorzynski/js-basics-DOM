@@ -17,6 +17,59 @@
 <div class="box"></div>
 <script>
     // Napisz skrypt, który przesunie element w prawo lub w lewo, w zależności czy zostnie kliknięta strzałka w lewo czy w prawo.
+    const range = 5;
+    let arrowLeft = false;
+    let arrowRight = false;
+    const htmlElement = document.querySelector('.box');
+
+    const handleKeyPressListener = e => {
+        document.addEventListener('keydown', e => {
+        switch (e.key) {
+            case 'Left':
+            case 'ArrowLeft':
+                arrowLeft = true;
+                break;
+            case 'Right':
+            case 'ArrowRight':
+                arrowRight = true;
+                break;
+            default:
+                break;
+        }
+        });
+        document.addEventListener('keyup', e => {
+            switch (e.key) {
+            case 'Left':
+            case 'ArrowLeft':
+                arrowLeft = false;
+                break;
+            case 'Right':
+            case 'ArrowRight':
+                arrowRight = false;
+                break;
+            default:
+                break;
+        }
+        });
+    }
+
+    const changeElementPosition = () => {
+        if (arrowLeft && htmlElement.offsetLeft > 0) {
+            htmlElement.style.left = `${htmlElement.offsetLeft - range}px`;
+        }
+        if (arrowRight && htmlElement.offsetLeft < window.innerWidth - htmlElement.offsetWidth) {
+            htmlElement.style.left = `${htmlElement.offsetLeft + range}px`;
+        }
+    }
+
+    const monitorElementPosition = () => {
+        changeElementPosition();
+        requestAnimationFrame(monitorElementPosition);
+    };
+
+    handleKeyPressListener();
+    monitorElementPosition();
+
 </script>
 </body>
 </html>
