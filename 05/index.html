@@ -17,6 +17,18 @@
 <script>
     // Napisz skrypt, który będzie tworzyć element o klasie bullet i dodawać w losowe miejsce na stronie
     // (widoczne dla użytkownika).
+
+    const body = document.querySelector('body');
+
+    const createClassBulletElement = () => {
+        const htmlElement = document.createElement('div');
+        htmlElement.classList.add('bullet');
+        htmlElement.style.position = 'absolute';
+        htmlElement.style.top = `${Math.floor(Math.random() * (window.innerHeight - htmlElement.offsetHeight))}px`;
+        htmlElement.style.left = `${Math.floor(Math.random() * (window.innerWidth - htmlElement.offsetWidth))}px`;
+        body.append(htmlElement);
+    }
+    createClassBulletElement();
 </script>
 </body>
 </html>
