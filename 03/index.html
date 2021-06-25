@@ -9,6 +9,36 @@
 <script>
     // Napisz skrypt, który wykona countdown od 10 do 0. Na koniec countdownu wyświetl alert o treści "KONIEC".
     // Dodaj możliwość zapuazowania skryptu po kliknięciu spacji.
+
+    const countdownInfo = document.querySelector('#countdown');
+    let counter = 10;
+    let isPaused = false;
+
+    document.addEventListener('keydown', e => {
+        if (e.key === ' ') {
+            isPaused = !isPaused;
+            countdown();
+        }
+    })
+
+    const countdown = () => {
+        const intervalId = setInterval(() => {
+            if (!isPaused) {
+                counter -= 1;
+                countdownInfo.innerText = counter;
+            } else {
+                clearInterval(intervalId);
+            }
+            if (counter < 0) {
+                clearInterval(intervalId);
+                countdownInfo.innerText = 0; 
+                alert('KONIEC');
+            }            
+        }, 1000);
+    };
+
+    countdown();
+
 </script>
 </body>
 </html>

@@ -51,12 +51,11 @@
     form.addEventListener('submit', changeName);
 
     const handlePressedKeys = e => {
-        console.log(e)
         if (e.ctrlKey && e.key === 'o') {
             showPopup();
         }
     };
-    window.addEventListener('keydown', handlePressedKeys);
+    document.addEventListener('keydown', handlePressedKeys);
 
 
 </script>
