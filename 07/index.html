@@ -16,6 +16,21 @@
 <script>
     // Napisz skrypt, który po wysłaniu formularza wyświetli tekst z wysłanym imieniem i nazwiskiem w elemencie hello.
     // Po 2s tekst w hello powinien się wyczyścić.
+
+    const form = document.querySelector('form');
+    const submitInfo = document.querySelector('#hello');
+
+    const showSubmitInfo = e => {
+        e.preventDefault();
+        submitInfo.innerText = `${form.name.value} ${form.surname.value}`;
+        setTimeout(() => {
+            submitInfo.innerText = '';
+        }, 2000);
+    };
+
+    form.addEventListener('submit', showSubmitInfo);
+
+
 </script>
 </body>
 </html>
