@@ -11,6 +11,54 @@
     // Napisz skrypt, który na kliknięcie przycisku pokaże komunikat z możliwością wpisania tekstu, który potem
     // zostanie użyty do zastąpienia "tutaj wstaw imię" w hello
     // Dodaj możliwość pojawienia się tego samego komunikatu po wpisaniu na klawiaturze CTRL + O
+
+    const takeNameBtn = document.querySelector('button');
+    const showName = document.querySelector('#hello');
+    const body = document.querySelector('body');
+
+    const createPopup = () => {
+        const html = 
+                `<label for="name">Imię</label>
+                <input id="name" name="name" />
+                <input type="submit" value="Podaj" />`;
+        const popup = document.createElement('form');
+        popup.innerHTML = html;
+        popup.style.display = 'none';
+        popup.style.position = 'absolute';
+        popup.style.left = '30%';
+        popup.style.top = '20%';
+        body.append(popup);
+    };
+
+    createPopup();
+    
+    const form = document.querySelector('form');
+    
+    const showPopup = () => {
+        showName.innerText = 'Cześć "tutaj wstaw imię"!';
+        form.style.display = 'block';
+    };
+    takeNameBtn.addEventListener('click', showPopup);
+    
+
+    const changeName = e => {
+        e.preventDefault();
+        showName.innerText = `Cześć ${form.name.value}!`;
+        form.name.value = '';
+        form.style.display = 'none';
+    };
+
+    form.addEventListener('submit', changeName);
+
+    const handlePressedKeys = e => {
+        console.log(e)
+        if (e.ctrlKey && e.key === 'o') {
+            showPopup();
+        }
+    };
+    window.addEventListener('keydown', handlePressedKeys);
+
+
 </script>
 </body>
 </html>
