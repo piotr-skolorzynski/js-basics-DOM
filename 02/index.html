@@ -11,6 +11,32 @@
 <script>
     // Napisz skrypt, który na kliknięcie przycisku zwiększy lub zmniejszy wartość w elemencie counter.
     // Po osięgnięciu 10 lub -10, przycisk zwiększania lub zmiejszania powinien się zablokować. (zakres od -10 do 10)
+
+    const counterInfo = document.querySelector('#counter');
+    const addBtn = document.querySelector('button');
+    const subBtn = document.querySelector('button + button ');
+
+    let counter  = 0;
+
+    addBtn.addEventListener('click', () => {
+        if (counter >= 10) {
+            addBtn.setAttribute('disabled', '');
+        } else {
+            counter += 1;
+            subBtn.removeAttribute('disabled');
+            counterInfo.innerText = counter;
+        }
+    });
+
+    subBtn.addEventListener('click', () => {
+        if (counter <= -10) {
+            subBtn.setAttribute('disabled', '');
+        } else {
+            counter -= 1;
+            addBtn.removeAttribute('disabled');
+            counterInfo.innerText = counter;    
+        }
+    });
 </script>
 </body>
 </html>
