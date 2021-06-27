@@ -13,7 +13,9 @@
         <th>Wiek</th>
     </tr>
     </thead>
-    <tbody></tbody>
+    <tbody>
+
+    </tbody>
 </table>
 <script>
     // Napisz skrypt, który doda użytkowników z tabeli do tablicy (w postaci kolejnego wiersza tr i td).
@@ -35,6 +37,33 @@
             age: 14
         }
         ];
+
+        const tableBody = document.querySelector('tbody');
+        // console.log(tableBody)
+
+        const createUser = ([fname, lname, age]) => {
+            return `<th>${fname}</th>
+            <th>${lname}</th>
+            <th>${age}</th>`;
+        }
+
+        const showUsers = (array, container) => {
+            const usersToRender = array.map(el => {
+                const elValues = Object.values(el);
+                // console.log(elValues)
+                const newUser = createUser([...elValues]);
+                // console.log(newUser)
+                return newUser
+            });
+            usersToRender.forEach(user => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = user;
+                container.append(tr);
+            })
+        };
+
+        addEventListener('DOMContentLoaded', () => showUsers(users, tableBody));
+
 </script>
 </body>
 </html>
